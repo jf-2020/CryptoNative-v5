@@ -4,9 +4,11 @@
 import React from 'react';
 import BaseTemplate from '../BaseTemplate';
 
-import AddPortfolioModal from '../Forms/AddPortfolioModal';
-import DeletePortfolioModal from '../Forms/DeletePortfolioModal';
-import AddCoinModal from '../Forms/AddCoinModal';
+import TabPanelScroll from '../subcomponents/TabPanelScroll';
+
+// import AddPortfolioModal from '../Forms/AddPortfolioModal';
+// import DeletePortfolioModal from '../Forms/DeletePortfolioModal';
+// import AddCoinModal from '../Forms/AddCoinModal';
 
 // import LineChart from '../Charts/LineChart';
 // import NewDonut from '../Charts/NewDonut';
@@ -19,19 +21,40 @@ import AddCoinModal from '../Forms/AddCoinModal';
 //     test_donutchart = [150, 200, 250];
 
 const PortfolioView = () => {
+    const store = sessionStorage;
+    const isLoggedIn = store.getItem('user');
+
     return (
-        <BaseTemplate>
-            <h1>Portfolio View</h1>
-            <hr />
-            <AddPortfolioModal />
-            <hr />
-            <DeletePortfolioModal />
-            <hr />
-            <AddCoinModal />
-            <hr />
-        </BaseTemplate>
+        <>
+            {isLoggedIn ? (
+                <BaseTemplate>
+                    <TabPanelScroll loggedIn={isLoggedIn} />
+                </BaseTemplate>
+            ) : (
+                    <BaseTemplate>
+                        <h1>Portfolio List View</h1>
+                        <hr />
+                        <p>You are currently not logged in. Please login or create a user and login.</p>
+                    </BaseTemplate>
+                )}
+        </>
     )
 };
+
+// const PortfolioView = () => {
+//     return (
+//         <BaseTemplate>
+//             <h1>Portfolio View</h1>
+//             <hr />
+//             <AddPortfolioModal />
+//             <hr />
+//             <DeletePortfolioModal />
+//             <hr />
+//             <AddCoinModal />
+//             <hr />
+//         </BaseTemplate>
+//     )
+// };
 
 // const PortfolioView = () => {
 //     return (
