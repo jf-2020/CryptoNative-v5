@@ -1,5 +1,6 @@
-.flex-wrapper {
+.flex-Wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    padding: 15px;
 }

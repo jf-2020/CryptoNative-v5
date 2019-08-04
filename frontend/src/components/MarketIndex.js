@@ -52,16 +52,16 @@ class MarketIndex extends Component {
         if (this.state.rendered) {
             return (
                 <div>
-                    {this.state.list.map((item) => (
+                    { this.state.list.map((item) => (
                         <>
                             <MarketIndexRow
-                                id={item.id}
-                                name={item.name}
-                                ticker={item.ticker}
+                                id={ item.id }
+                                name={ item.name }
+                                ticker={ item.ticker }
                             />
-                            <hr />
+
                         </>
-                    ))}
+                    )) }
                 </div>
             )
         } else {

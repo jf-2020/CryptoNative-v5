@@ -8,9 +8,11 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import UserLoginModal from '../Forms/UserLoginModal';
+import logo from '../../Images/849.gif';
 
 const useStyles = makeStyles(theme => ({
     root: {
+        backgroundColor: 'red',
         flexGrow: 1,
     },
     menuButton: {
@@ -66,34 +68,35 @@ export default function SearchAppBar() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={ classes.root }>
             <AppBar position="fixed">
                 <Toolbar>
                     <IconButton
                         edge="start"
-                        className={classes.menuButton}
+                        className={ classes.menuButton }
                         color="inherit"
                         aria-label="open drawer"
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
+                    <Typography className={ classes.title } variant="h6" noWrap>
                         CryptoNative
                     </Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
+                    <img src={ logo } />
+                    <div className={ classes.search }>
+                        <div className={ classes.searchIcon }>
                             <SearchIcon />
                         </div>
                         <InputBase
                             placeholder="Search…"
-                            classes={{
+                            classes={ {
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
+                            } }
+                            inputProps={ { 'aria-label': 'search' } }
                         />
                     </div>
-                    <div className={classes.search}>
+                    <div className={ classes.search }>
                         <UserLoginModal />
                     </div>
                 </Toolbar>

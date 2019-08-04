@@ -8,14 +8,23 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FolderIcon from '@material-ui/icons/Folder';
 
+
+// import CSS
+import '../../styles/LabelBottomNavigation.css';
+
 // import BaseTemplate from '../BaseTemplate';
 // import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles({
     root: {
+        borderTop: 5,
+        borderColor: 'black',
         width: '100%',
         position: 'fixed',
-        bottom: 0
+        bottom: 0,
+        background: '#1E2632',
+        color: '#00C689'
+
     },
 });
 
@@ -28,35 +37,36 @@ export default function LabelBottomNavigation() {
     }
 
     return (
-        <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+        <BottomNavigation value={ value } onChange={ handleChange } className={ classes.root }>
             <BottomNavigationAction
                 label="Recents"
                 value="recents"
-                icon={<RestoreIcon />}
-                component={Link}
+                icon={ <RestoreIcon /> }
+                component={ Link }
                 to="/one"
             />
             <BottomNavigationAction
                 label="Favorites"
                 value="favorites"
-                icon={<FavoriteIcon />}
-                component={Link}
+                icon={ <FavoriteIcon /> }
+                component={ Link }
                 to="/two"
             />
             <BottomNavigationAction
                 label="Nearby"
                 value="nearby"
-                icon={<LocationOnIcon />}
-                component={Link}
+                icon={ <LocationOnIcon /> }
+                component={ Link }
                 to="/three"
             />
             <BottomNavigationAction
                 label="Folder"
                 value="folder"
-                icon={<FolderIcon>folder</FolderIcon>}
-                component={Link}
+                icon={ <FolderIcon>folder</FolderIcon> }
+                component={ Link }
                 to="/four"
             />
         </BottomNavigation>
+
     );
 }
