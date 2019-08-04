@@ -115,7 +115,7 @@ class UserLoginModal extends Component {
         }
 
         return (
-            <div>
+            <>
                 {isLoggedIn ? (
                     <>
                         <Button variant="outlined" color="primary" onClick={this.handleOpen}>
@@ -197,7 +197,7 @@ class UserLoginModal extends Component {
                             </Dialog>
                         </>
                     )}
-            </div>
+            </>
         );
     }
 }

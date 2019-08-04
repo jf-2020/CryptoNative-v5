@@ -29,10 +29,11 @@ class MarketIndexRow extends Component {
 
     componentDidMount() {
         // construct the request
-        const base_url = "https://api.coincap.io/v2/",
+        const proxy = "https://cors-anywhere.herokuapp.com/",
+            base_url = "https://api.coincap.io/v2/",
             resource = 'assets/',
             id = this.state.id;
-        const request_url = base_url + resource + id;
+        const request_url = proxy + base_url + resource + id;
         // now perform the fetch
         fetch(request_url)
             .then(resp => resp.json())

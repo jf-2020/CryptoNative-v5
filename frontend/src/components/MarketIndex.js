@@ -23,9 +23,10 @@ class MarketIndex extends Component {
 
     componentDidMount() {
         // construct the request
-        const base_url = "https://api.coincap.io/v2/",
+        const proxy = "https://cors-anywhere.herokuapp.com/",
+            base_url = "https://api.coincap.io/v2/",
             resource = 'assets';
-        const request_url = base_url + resource;
+        const request_url = proxy + base_url + resource;
         // now perform the fetch
         fetch(request_url)
             .then(resp => resp.json())
@@ -51,18 +52,16 @@ class MarketIndex extends Component {
     render() {
         if (this.state.rendered) {
             return (
-                <div>
-                    { this.state.list.map((item) => (
-                        <>
+                <>
+                    {this.state.list.map((item, index) => (
+                        <div key={index}>
                             <MarketIndexRow
                                 id={ item.id }
                                 name={ item.name }
                                 ticker={ item.ticker }
                             />
-
-                        </>
-                    )) }
-                </div>
+                    ))}
+                </>
             )
         } else {
             // handles the initial case before state is populated
