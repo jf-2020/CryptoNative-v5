@@ -13,13 +13,13 @@ const RowBadge = (props) => {
     return (
         <div className="flex-row-container">
             <div className="icon-container">
-                <Avatar alt={props.ticker} src={logo} className="icon" />
+                <Avatar alt={ props.ticker } src={ logo } className="icon" />
             </div>
             <div className="flex-col-container">
-                <h3 style={{ textAlign: 'center' }}>{props.ticker}</h3>
-                <h3 style={{ textAlign: 'center' }}>{props.name}</h3>
+                <p className="symbolName" style={ { textAlign: 'left', margin: 0 } }>{ props.ticker }</p>
+                <p className="fullName" style={ { textAlign: 'left', margin: 0 } }>{ props.name }</p>
             </div>
-        </div>
+        </div >
     )
 }
 

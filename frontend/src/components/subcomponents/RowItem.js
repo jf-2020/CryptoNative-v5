@@ -7,8 +7,8 @@ import '../../styles/RowItem.css';
 const RowItem = (props) => {
     return (
         <div className="flex-Wrapper">
-            <h4>{props.data.price}</h4>
-            <h4>{props.data.percent_change}</h4>
+            <p style={ { textAlign: 'right', margin: 0, alignItem: 'center' } }>{ props.data.price } </p>
+            <p style={ { textAlign: 'right', margin: 0, alignItem: 'center' } }>{ props.data.percent_change }</p>
         </div>
     )
 }

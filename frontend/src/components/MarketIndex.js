@@ -52,18 +52,16 @@ class MarketIndex extends Component {
     render() {
         if (this.state.rendered) {
             return (
-                <div>
+                <>
                     {this.state.list.map((item, index) => (
                         <div key={index}>
                             <MarketIndexRow
-                                id={item.id}
-                                name={item.name}
-                                ticker={item.ticker}
+                                id={ item.id }
+                                name={ item.name }
+                                ticker={ item.ticker }
                             />
-                            <hr />
-                        </div>
                     ))}
-                </div>
+                </>
             )
         } else {
             // handles the initial case before state is populated

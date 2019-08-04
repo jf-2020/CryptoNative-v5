@@ -1,5 +1,9 @@
 .row-div {
     display: flex;
+    height: 80px;
     flex-direction: row;
     justify-content: space-between;
+    align-content: center;
+    color: white;
+    background-color: #0D1C25;
 }
