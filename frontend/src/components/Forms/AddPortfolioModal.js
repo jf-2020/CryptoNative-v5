@@ -14,7 +14,7 @@ class AddPortfolioModal extends Component {
         this.state = {
             open: false,
             portfolioName: '',
-            userId: '1'
+            userId: sessionStorage.getItem('user')
         };
 
         this.handleOpen = this.handleOpen.bind(this);
@@ -25,7 +25,8 @@ class AddPortfolioModal extends Component {
 
     handleOpen() {
         this.setState({
-            open: true
+            open: true,
+            portfolioName: ''
         });
     }
 
@@ -46,7 +47,7 @@ class AddPortfolioModal extends Component {
         event.preventDefault();
 
         const url = `http://localhost:9000/portfolios/${this.state.userId}/add`;
-        await fetch(url, {
+        const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -58,9 +59,19 @@ class AddPortfolioModal extends Component {
             })
         });
 
-        this.setState({
-            portfolioName: ''
-        });
+        const json_data = await response.json();
+
+        if (response.status === 200) {
+            const store = sessionStorage;
+            const portfolios = store.getItem('portfolios');
+            if (portfolios) {
+                const portfolioIdsList = portfolios.trim().split(" ");
+                portfolioIdsList.push(json_data.portfolio.toString());
+                store.setItem('portfolios', portfolioIdsList.join(' '));
+            } else {
+                store.setItem('portfolios', json_data.portfolio);
+            }
+        }
     }
 
     render() {

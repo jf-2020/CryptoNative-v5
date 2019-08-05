@@ -18,11 +18,13 @@ class Portfolio {
                     ${id},
                     '${name}',
                     ${user_id}
-                )`;
-
+                ) RETURNING
+                    portfolio_id
+                `;
         try {
-            await db.none(query);
+            const response = await db.one(query);
             console.log(`Portfolio: ${name} added successfully.`);
+            return response.portfolio_id;
         } catch (error) {
             console.log("addPortfolio() error:", error.message);
             return error.message;
@@ -68,6 +70,24 @@ class Portfolio {
             return response.max;
         } catch (error) {
             console.log("getMaxPortfolioId() error:", error.message);
+            return error.message;
+        }
+    }
+
+    static async getAllPortfoliosByUserId(user_id) {
+        const query = `
+            SELECT
+                portfolio_id
+            FROM
+                portfolios
+            WHERE
+                user_id = ${user_id}
+        `;
+        try {
+            const response = await db.any(query);
+            return response;
+        } catch (error) {
+            console.log("getAllPortfoliosByUserId() error:", error.message);
             return error.message;
         }
     }

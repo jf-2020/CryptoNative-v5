@@ -66,12 +66,18 @@ class UserLoginModal extends Component {
                 password: this.state.password
             })
         });
+
         const json_data = await response.json();
 
         if (response.status === 200) {
             const store = sessionStorage;
             store.setItem('user', `${json_data.user}`);
-            console.log("store:", store);
+
+            const portfolios = json_data.portfolios.map((number) => {
+                return number.toString()
+            }).join(' ');
+            store.setItem('portfolios', portfolios);
+
             this.forceUpdate();
         } else {
             console.log("Invalid Login");
@@ -98,7 +104,8 @@ class UserLoginModal extends Component {
         if (response.status === 200) {
             const store = sessionStorage;
             store.removeItem('user');
-            console.log("store:", store);
+            store.removeItem('portfolios');
+
             this.forceUpdate();
         } else {
             console.log("Invalid Credentials");

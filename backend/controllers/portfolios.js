@@ -4,8 +4,8 @@ exports.addPortfolio = async (req, res) => {
     const { name, user } = req.body;
 
     try {
-        await Portfolio.addPortfolio(name, user);
-        res.sendStatus(200);
+        const response = await Portfolio.addPortfolio(name, user);
+        res.json({ portfolio: response });
     } catch (error) {
         console.log("addPortfolio() controller error:", error.message);
         res.sendStatus(400);

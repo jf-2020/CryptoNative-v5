@@ -64,35 +64,41 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
     const classes = useStyles();
 
     return (
-        <div className={ classes.root }>
+        <div className={classes.root}>
             <AppBar position="fixed">
                 <Toolbar>
                     <IconButton
                         edge="start"
-                        className={ classes.menuButton }
+                        className={classes.menuButton}
                         color="inherit"
                         aria-label="open drawer"
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={ classes.title } variant="h6" noWrap>
+                    <Typography className={classes.title} variant="h6" noWrap>
                         CryptoNative
                     </Typography>
-          
-                    <div className={ classes.search }>
-                        <img src={ logo } />
-                        <UserLoginModal />
-                    </div>
+
+                    <img src={logo} alt="logo" />
+
+                    {props.userPage ? (
+                        <>
+                            <div className={classes.search}>
+                                <UserLoginModal />
+                            </div>
+                        </>
+                    ) : (
+                            <></>
+                        )}
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
-
 
 // SEARCH BAR //
 // <div className={classes.search}>

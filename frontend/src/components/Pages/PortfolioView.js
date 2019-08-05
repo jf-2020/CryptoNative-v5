@@ -6,9 +6,9 @@ import BaseTemplate from '../BaseTemplate';
 
 import TabPanelScroll from '../subcomponents/TabPanelScroll';
 
-// import AddPortfolioModal from '../Forms/AddPortfolioModal';
-// import DeletePortfolioModal from '../Forms/DeletePortfolioModal';
-// import AddCoinModal from '../Forms/AddCoinModal';
+import AddPortfolioModal from '../Forms/AddPortfolioModal';
+import DeletePortfolioModal from '../Forms/DeletePortfolioModal';
+import AddCoinModal from '../Forms/AddCoinModal';
 
 // import LineChart from '../Charts/LineChart';
 // import NewDonut from '../Charts/NewDonut';
@@ -28,7 +28,15 @@ const PortfolioView = () => {
         <>
             {isLoggedIn ? (
                 <BaseTemplate>
-                    <TabPanelScroll loggedIn={isLoggedIn} />
+                    <h1>Portfolio View</h1>
+                    <hr />
+                    <AddPortfolioModal />
+                    <hr />
+                    <DeletePortfolioModal />
+                    <hr />
+                    <AddCoinModal />
+                    <hr />
+                    <TabPanelScroll />
                 </BaseTemplate>
             ) : (
                     <BaseTemplate>
@@ -40,21 +48,6 @@ const PortfolioView = () => {
         </>
     )
 };
-
-// const PortfolioView = () => {
-//     return (
-//         <BaseTemplate>
-//             <h1>Portfolio View</h1>
-//             <hr />
-//             <AddPortfolioModal />
-//             <hr />
-//             <DeletePortfolioModal />
-//             <hr />
-//             <AddCoinModal />
-//             <hr />
-//         </BaseTemplate>
-//     )
-// };
 
 // const PortfolioView = () => {
 //     return (
