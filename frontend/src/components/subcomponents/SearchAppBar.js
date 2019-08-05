@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import UserLoginModal from '../Forms/UserLoginModal';
 import logo from '../../Images/849.gif';
 
+import HamburgerMenu from '../subcomponents/HamburgerMenu';
+
 const useStyles = makeStyles({
     root: {
         background: '#1E2632',
@@ -28,7 +30,7 @@ export default function SearchAppBar(props) {
     const classes = useStyles();
 
     return (
-        <div className={ classes.root }>
+        <div className={classes.root}>
             <AppBar position="fixed">
                 <Toolbar style={{ background: '#1E2632' }}>
                     <img src={logo} alt="logo" />
@@ -43,9 +45,15 @@ export default function SearchAppBar(props) {
                                 <UserLoginModal style={{ alignItem: 'right' }} />
                             </div>
                         </>
+                    ) : props.portfolioPage ? (
+                        <>
+                            <div className={classes.search}>
+                                <HamburgerMenu />
+                            </div>
+                        </>
                     ) : (
-                            <></>
-                        ) }
+                                <></>
+                            )}
                 </Toolbar>
             </AppBar>
         </div>

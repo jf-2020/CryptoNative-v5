@@ -14,7 +14,7 @@ class DeletePortfolioModal extends Component {
         this.state = {
             open: false,
             portfolioName: '',
-            userId: '1'
+            userId: sessionStorage.getItem('user')
         };
 
         this.handleOpen = this.handleOpen.bind(this);
@@ -25,7 +25,8 @@ class DeletePortfolioModal extends Component {
 
     handleOpen() {
         this.setState({
-            open: true
+            open: true,
+            portfolioName: ''
         });
     }
 
@@ -47,7 +48,7 @@ class DeletePortfolioModal extends Component {
         event.preventDefault();
 
         const url = `http://localhost:9000/portfolios/${this.state.userId}/delete`;
-        await fetch(url, {
+        const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -59,9 +60,19 @@ class DeletePortfolioModal extends Component {
             })
         });
 
-        this.setState({
-            portfolioName: ''
+        const json_data = await response.json();
+        const id = json_data.portfolioId;
+
+        const store = sessionStorage;
+        const portfolios = store.portfolios.split(" ");
+
+        const new_portfolios = portfolios.filter(item => {
+            return item !== id.toString()
         });
+
+        const portfolios_as_string = new_portfolios.join(' ');
+
+        store.setItem('portfolios', portfolios_as_string);
     }
 
     render() {

@@ -37,6 +37,7 @@ class Portfolio {
         try {
             await db.none(query);
             console.log(`Portfolio: ${portfolio_id} deleted successfully.`);
+            return portfolio_id;
         } catch (error) {
             console.log("deletePortfolio() error:", error.message);
             return error.message;
