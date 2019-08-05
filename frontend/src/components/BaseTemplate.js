@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import SearchAppBar from './subcomponents/SearchAppBar';
 import LabelBottomNavigation from './subcomponents/LabelBottomNavigation';
 import Box from '@material-ui/core/Box';
-
+import SearchAppBarTEST from './subcomponents/SearchAppBarTEST';
+import LabelBottomNavigationTEST from './subcomponents/LabelBottomTEST';
 /* get some lorem for testing */
 // import HeaderData from './lorem/HeaderData';
 // import ParagraphData from './lorem/ParagraphData';
@@ -53,9 +54,9 @@ class BaseTemplate extends Component {
                         display="flex"
                         flexDirection="column"
                         alignItems="stretch"
+                    >                        
+                        { this.state.dimensions ? (
 
-                    >
-                        {this.state.dimensions ? (
                             <>
                                 <Box
                                     style={{

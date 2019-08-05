@@ -53,8 +53,8 @@ class MarketIndex extends Component {
         if (this.state.rendered) {
             return (
                 <>
-                    {this.state.list.map((item, index) => (
-                        <div key={index}>
+                    { this.state.list.map((item, index) => (
+                        <div key={ index }>
                             <MarketIndexRow
                                 id={item.id}
                                 name={item.name}
