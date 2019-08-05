@@ -61,6 +61,8 @@ class MarketIndexRow extends Component {
                 }
             }
 
+            console.log("data:", data);
+
             return (
                 <div className="row-div"  >
                     <RowBadge

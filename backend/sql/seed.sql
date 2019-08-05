@@ -107,3 +107,19 @@ VALUES
     (10, 10, 'Browsecat', 'MSFT', 49, 13418.1),
     (10, 10, 'Flashspan', 'GG', 39, 954.6),
     (10, 10, 'Centizu', 'WINA', 80, 15552.3);
+
+
+--------------------------------------------------------------
+--                  FOLLOWING APP START                     -- 
+--------------------------------------------------------------
+-- Insert the following USER:
+-- 		first: 	1
+-- 		last: 	1
+-- 		email:	1@1
+-- 		pw:		1
+--
+-- And insert the following PORTFOLIOS -- 
+-- INSERT INTO portfolios (portfolio_id, name, user_id) VALUES (21, 'red', 11), (22, 'blue', 11), (23, 'green', 11);
+--
+-- And insert the following COINS --
+-- INSERT INTO coins (coin_id, portfolio_id, user_id, name, symbol, amount, price) VALUES (61, 21, 11, 'Bitcoin', 'BTC', 12, 124.43), (62, 21, 11, 'Ethereum', 'ETH', 145, 41.1), (63, 21, 11, 'Litecoin', 'LTC', 27, 5.12), (64, 22, 11, 'Bitcoin', 'BTC', 9, 1001.01), (65, 22, 11, 'Litecoin', 'LTC', 301, 0.33), (66, 22, 11, 'Ethereum', 'ETH', 3, 201.21), (67, 23, 11, 'Litecoin', 'LTC', 1230, 0.01), (68, 23, 11, 'Ethereum', 'ETH', 12, 401.05), (69, 23, 11, 'Bitcoin', 'BTC', 13, 5670.13);

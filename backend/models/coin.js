@@ -37,6 +37,24 @@ class Coin {
             return error.message;
         }
     }
+
+    static async getCoinsByPortfolioId(portfolio_id) {
+        const query = `
+            SELECT
+                name, symbol, amount, price
+            FROM
+                coins
+            WHERE
+                portfolio_id = ${portfolio_id}
+        `;
+        try {
+            const response = await db.any(query);
+            return response;
+        } catch (error) {
+            console.log("getCoinsByPortfolioId() error:", error.message);
+            return error.message;
+        }
+    }
 }
 
 module.exports = Coin;
