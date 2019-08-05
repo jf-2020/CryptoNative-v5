@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import SearchAppBar from './subcomponents/SearchAppBar';
 import LabelBottomNavigation from './subcomponents/LabelBottomNavigation';
 import Box from '@material-ui/core/Box';
-import SearchAppBarTEST from './subcomponents/SearchAppBarTEST';
-import LabelBottomNavigationTEST from './subcomponents/LabelBottomTEST';
+
+
 /* get some lorem for testing */
 // import HeaderData from './lorem/HeaderData';
 // import ParagraphData from './lorem/ParagraphData';
@@ -46,31 +46,32 @@ class BaseTemplate extends Component {
          * any number of components. as such, it's accessed below via `props.children`.
          */
         return (
-            <div style={{ height: '100%' }} ref={this.div}>
+            <div style={ { height: '100%' } } ref={ this.div }>
                 <Box display="flex" flexDirection="column">
-                    <SearchAppBar userPage={this.state.userPage} />
+                    <SearchAppBar userPage={ this.state.userPage } />
                     <Box flex="1"
                         overflow="auto"
                         display="flex"
                         flexDirection="column"
                         alignItems="stretch"
-                    >                        
+                    >
                         { this.state.dimensions ? (
 
                             <>
                                 <Box
-                                    style={{
+                                    style={ {
                                         marginTop: `${this.state.dimensions[1]}px`,
                                         marginBottom: `${this.state.dimensions[3]}px`
-                                    }}
+                                    } }
                                 >
-                                    {this.props.children}
+                                    { this.props.children }
                                 </Box>
                             </>
                         ) : (
                                 <></>
-                            )}
+                            ) }
                     </Box>
+
                     <LabelBottomNavigation />
                 </Box>
             </div>

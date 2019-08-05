@@ -4,6 +4,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
-    color: white;
     background-color: #0D1C25;
-}
+    border: 10;
+    color: white;
+    
+    }

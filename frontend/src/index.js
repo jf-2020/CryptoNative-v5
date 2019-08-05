@@ -21,16 +21,16 @@ import UserProfileView from './components/Pages/UserProfileView';
 const App = () => {
     return (
         <Router>
-            <CssBaseline>
+            <CssBaseline >
                 <Switch>
-                    <Route exact path="/" component={withRouter(BaseTemplate)} />
-                    <Route exact path="/one" component={withRouter(MarketIndexView)} />
-                    <Route exact path="/two" component={withRouter(WatchListView)} />
-                    <Route exact path="/three" component={withRouter(PortfolioView)} />
-                    <Route exact path="/four" component={withRouter(UserProfileView)} />
+                    <Route exact path="/" component={ withRouter(BaseTemplate) } />
+                    <Route exact path="/one" component={ withRouter(MarketIndexView) } />
+                    <Route exact path="/two" component={ withRouter(WatchListView) } />
+                    <Route exact path="/three" component={ withRouter(PortfolioView) } />
+                    <Route exact path="/four" component={ withRouter(UserProfileView) } />
                 </Switch>
             </CssBaseline>
-        </Router>
+        </Router >
     )
 }
 

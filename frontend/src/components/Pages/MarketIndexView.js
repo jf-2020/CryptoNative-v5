@@ -5,11 +5,13 @@ import React from 'react';
 import BaseTemplate from '../BaseTemplate';
 import MarketIndex from '../MarketIndex';
 
+
+
 const MarketIndexView = () => {
     return (
-        <BaseTemplate>
+        <BaseTemplate >
             <MarketIndex />
-        </BaseTemplate>
+        </BaseTemplate >
     );
 };
 

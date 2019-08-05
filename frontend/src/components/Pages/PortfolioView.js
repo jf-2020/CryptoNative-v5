@@ -26,7 +26,7 @@ const PortfolioView = () => {
 
     return (
         <>
-            {isLoggedIn ? (
+            { isLoggedIn ? (
                 <BaseTemplate>
                     <h1>Portfolio View</h1>
                     <hr />
@@ -44,7 +44,7 @@ const PortfolioView = () => {
                         <hr />
                         <p>You are currently not logged in. Please login or create a user and login.</p>
                     </BaseTemplate>
-                )}
+                ) }
         </>
     )
 };

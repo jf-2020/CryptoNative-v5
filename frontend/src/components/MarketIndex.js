@@ -10,6 +10,8 @@ import React, { Component } from 'react';
 import fetch from 'node-fetch';
 
 import MarketIndexRow from './subcomponents/MarketIndexRow';
+// import '../styles/greenBackground.css'
+
 
 class MarketIndex extends Component {
     constructor(props) {
@@ -54,14 +56,20 @@ class MarketIndex extends Component {
             return (
                 <>
                     { this.state.list.map((item, index) => (
-                        <div key={ index }>
+                        <div border={ 10 } key={ index } >
+                            <div style={ { height: .5, background: '#00C689' } }></div>
                             <MarketIndexRow
-                                id={item.id}
-                                name={item.name}
-                                ticker={item.ticker}
+                                id={ item.id }
+                                name={ item.name }
+                                ticker={ item.ticker }
+
                             />
+                            <div style={ { height: .5, background: '#00C689' } }></div>
+                            {/* <hr style={ { margin: 0, width: .5, color: 'green !important' } } /> */ }
                         </div>
-                    ))}
+
+                    )) }
+
                 </>
             )
         } else {
