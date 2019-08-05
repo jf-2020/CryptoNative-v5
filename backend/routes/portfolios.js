@@ -20,4 +20,7 @@ router.post('/:userId/delete', portfolioController.deletePortfolio);
 // TODO: associate with a particular portfolio
 router.post('/:userId/coinAdd', coinController.addCoinToPortfolio);
 
+// POST route for getting all portfolio data
+router.post('/:userId/get', portfolioController.fetchPortfolioData);
+
 module.exports = router;

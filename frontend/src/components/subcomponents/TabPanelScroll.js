@@ -8,8 +8,9 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import ParagraphData from '../Lorem/ParagraphData';
-import HeaderData from '../Lorem/HeaderData';
+import RowBadge from '../subcomponents/RowBadge';
+import RowItem from '../subcomponents/RowItem';
+import '../../styles/Row.css';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -49,9 +50,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ScrollableTabsButtonAuto = () => {
-    // TESTING -> eventually, to get from props
-    const listOfPortfolioNames = ['Portfolio 1', 'Portfolio 2', 'Portfolio 3', 'Portfolio 4'];
+const ScrollableTabsButtonAuto = (props) => {
+    const labels = props.labels;
+    const data = props.data;
 
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -77,17 +78,35 @@ const ScrollableTabsButtonAuto = () => {
                             scrollButtons="auto"
                             aria-label="scrollable auto tabs example"
                         >
-                            {listOfPortfolioNames.map((name, index) => {
+                            {labels.map((name, index) => {
                                 return <Tab label={name} {...a11yProps(index)} key={index} />
                             })}
                         </Tabs>
                     </AppBar>
-                    {listOfPortfolioNames.map((name, index) => {
-                        const isEven = index % 2 === 0;
+                    {data.map((portfolio, index) => {
+                        const key = Object.keys(portfolio)[0];
+
                         return (
                             <TabPanel value={value} index={index} key={index}>
-                                {isEven ? <ParagraphData />
-                                    : <HeaderData />
+                                {portfolio[key].map((obj, index) => {
+                                    const name = obj.name;
+                                    const symbol = obj.symbol;
+                                    const price = obj.price;
+                                    const amount = obj.amount;
+                                    const data = {
+                                        price: price,
+                                        percent_change: amount
+                                    };
+                                    return (
+                                        <div className="row-div" key={index}>
+                                            <RowBadge
+                                                name={name}
+                                                ticker={symbol}
+                                            />
+                                            <RowItem data={data} />
+                                        </div>
+                                    )
+                                })
                                 }
                             </TabPanel>
                         )

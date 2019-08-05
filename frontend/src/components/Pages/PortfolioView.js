@@ -1,7 +1,7 @@
 // functional component representing the Portfolio page in which
 // a given user is able to setup a set of portfolios
 
-import React from 'react';
+import React, { Component } from 'react';
 import BaseTemplate from '../BaseTemplate';
 
 import TabPanelScroll from '../subcomponents/TabPanelScroll';
@@ -20,33 +20,94 @@ import AddCoinModal from '../Forms/AddCoinModal';
 // },
 //     test_donutchart = [150, 200, 250];
 
-const PortfolioView = () => {
-    const store = sessionStorage;
-    const isLoggedIn = store.getItem('user');
 
-    return (
-        <>
-            {isLoggedIn ? (
-                <BaseTemplate>
-                    <h1>Portfolio View</h1>
-                    <hr />
-                    <AddPortfolioModal />
-                    <hr />
-                    <DeletePortfolioModal />
-                    <hr />
-                    <AddCoinModal />
-                    <hr />
-                    <TabPanelScroll />
-                </BaseTemplate>
-            ) : (
-                    <BaseTemplate>
-                        <h1>Portfolio List View</h1>
+
+class PortfolioView extends Component {
+    constructor(props) {
+        super(props);
+
+        const store = sessionStorage;
+        const user_id = store.getItem('user');
+        let portfolios = store.getItem('portfolios');
+
+        if (portfolios) {
+            portfolios = portfolios.split(" ").map(item => {
+                return parseInt(item)
+            });
+        }
+
+        this.state = {
+            userId: user_id,
+            isLoggedIn: user_id ? true : false,
+            portfolios: portfolios,
+            portfolioLabels: [],
+            data: []
+        };
+    }
+
+    async componentDidMount() {
+        const url = `http://localhost:9000/portfolios/${this.state.userId}/get`;
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                portfolios: this.state.portfolios
+            })
+        });
+        const raw_data = await response.json();
+        const data = raw_data.data;
+
+        const labels = Object.keys(data).map(id => {
+            return data[id].name
+        });
+
+        const portfolioData = Object.keys(data).map(id => {
+            const portfolio = data[id];
+            const name = portfolio.name;
+            const coins = portfolio.coins;
+            const ret_obj = {};
+            ret_obj[name] = coins;
+            return ret_obj;
+        });
+
+        this.setState({
+            portfolioLabels: labels,
+            data: portfolioData
+        });
+    }
+
+    render() {
+        // console.log("userId:", this.state.userId);
+        // console.log("isLoggedIn:", this.state.isLoggedIn);
+        // console.log("portfolios:", this.state.portfolios);
+
+        return (
+            <>
+                {this.state.isLoggedIn ? (
+                    <BaseTemplate >
+                        <h1>Portfolio View</h1>
                         <hr />
-                        <p>You are currently not logged in. Please login or create a user and login.</p>
+                        <AddPortfolioModal />
+                        <hr />
+                        <DeletePortfolioModal />
+                        <hr />
+                        <AddCoinModal />
+                        <hr />
+                        <TabPanelScroll labels={this.state.portfolioLabels} data={this.state.data} />
                     </BaseTemplate>
-                )}
-        </>
-    )
+                ) : (
+                        <BaseTemplate>
+                            <h1>Portfolio List View</h1>
+                            <hr />
+                            <p>You are currently not logged in. Please login or create a user and login.</p>
+                        </BaseTemplate>
+                    )}
+            </>
+        )
+    }
 };
 
 // const PortfolioView = () => {

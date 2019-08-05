@@ -91,6 +91,24 @@ class Portfolio {
             return error.message;
         }
     }
+
+    static async getPortfolioNameByPortfolioId(portfolio_id) {
+        const query = `
+            SELECT
+                name
+            FROM
+                portfolios
+            WHERE
+                portfolio_id = ${portfolio_id}
+        `;
+        try {
+            const response = await db.one(query);
+            return response.name;
+        } catch (error) {
+            console.log("getPortfolioNameByPortfolioId() error:", error.message);
+            return error.message;
+        }
+    }
 }
 
 module.exports = Portfolio;
