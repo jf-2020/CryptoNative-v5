@@ -3,23 +3,20 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Icon from '@material-ui/core/Icon';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FolderIcon from '@material-ui/icons/Folder';
 
-
-// import BaseTemplate from '../BaseTemplate';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-
 const useStyles = makeStyles({
     root: {
-
         width: '100%',
+        textColor: '#00C689',
         position: 'fixed',
         bottom: 0,
         background: '#1E2632',
-        color: '#00C689'
+        width: 500
     },
 });
 
@@ -30,8 +27,8 @@ export default function LabelBottomNavigation() {
     function handleChange(event, newValue) {
         setValue(newValue);
     }
-
     return (
+
         <BottomNavigation value={ value } onChange={ handleChange } className={ classes.root }>
             <BottomNavigationAction
                 label="Recents"
@@ -62,6 +59,5 @@ export default function LabelBottomNavigation() {
                 to="/four"
             />
         </BottomNavigation>
-
     );
 }
