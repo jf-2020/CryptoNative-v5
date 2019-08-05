@@ -1,4 +1,5 @@
 const User = require('../models/users');
+const Portfolio = require('../models/portfolio');
 const bcrypt = require('bcryptjs');
 
 exports.signup_post = async (req, res) => {
@@ -23,12 +24,18 @@ exports.login_post = async (req, res) => {
 
     const userInstance = new User(null, null, null, email, password);
     const userData = await userInstance.getUserByEmail();
-    userInstance.setUserId(userData.user_id);
 
     const isValid = await bcrypt.compareSync(password, userData.password);
 
     if (!!isValid) {
-        res.json({ user: userInstance.user_id });
+        userInstance.setUserId(userData.user_id);
+
+        let portfolios = await Portfolio.getAllPortfoliosByUserId(userData.user_id);
+        portfolios = portfolios.map((obj) => {
+            return obj.portfolio_id;
+        });
+
+        res.json({ portfolios: portfolios, user: userInstance.user_id });
     } else {
         res.sendStatus(401);
     }

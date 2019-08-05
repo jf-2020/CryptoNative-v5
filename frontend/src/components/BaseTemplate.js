@@ -13,7 +13,10 @@ class BaseTemplate extends Component {
     constructor(props) {
         super(props);
         this.div = React.createRef();
-        this.state = { dimensions: [] };
+        this.state = {
+            dimensions: [],
+            userPage: props.userPage
+        };
     }
 
     componentDidMount() {
@@ -43,28 +46,30 @@ class BaseTemplate extends Component {
          * any number of components. as such, it's accessed below via `props.children`.
          */
         return (
-            <div style={ { height: '100%' } } ref={ this.div }>
+            <div style={{ height: '100%' }} ref={this.div}>
                 <Box display="flex" flexDirection="column">
-                    <SearchAppBar />
+                    <SearchAppBar userPage={this.state.userPage} />
                     <Box flex="1"
                         overflow="auto"
                         display="flex"
                         flexDirection="column"
-                        alignItems="stretch">
+                        alignItems="stretch"
+                    >                        
                         { this.state.dimensions ? (
+
                             <>
                                 <Box
-                                    style={ {
+                                    style={{
                                         marginTop: `${this.state.dimensions[1]}px`,
                                         marginBottom: `${this.state.dimensions[3]}px`
-                                    } }
+                                    }}
                                 >
-                                    { this.props.children }
+                                    {this.props.children}
                                 </Box>
                             </>
                         ) : (
                                 <></>
-                            ) }
+                            )}
                     </Box>
                     <LabelBottomNavigation />
                 </Box>

@@ -8,8 +8,9 @@ import AddUserModal from '../Forms/AddUserModal';
 import DeleteUserModal from '../Forms/DeleteUserModal';
 
 const UserProfileView = () => {
+    const userPage = true;
     return (
-        <BaseTemplate>
+        <BaseTemplate userPage={userPage}>
             <h1>User Profile View</h1>
             <hr />
             <AddUserModal />

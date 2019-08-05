@@ -26,24 +26,33 @@ const useStyles = makeStyles({
     },
 });
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
     const classes = useStyles();
 
     return (
-        <div className={ classes.root }>
+        <div className={classes.root}>
             <AppBar position="fixed">
                 <Toolbar style={ { background: '#1E2632' } }>
-                    <img src={ logo } />
-                    <Typography className={ classes.title } variant="h6" noWrap>
+                    <img src={logo} alt="logo" />
+      
+                    <Typography className={classes.title} variant="h6" noWrap>
                         Bitchin App
                     </Typography>
-                    <UserLoginModal style={ { alignItem: 'right' } } />
+      
+                    {props.userPage ? (
+                        <>
+                            <div className={classes.search}>
+                                <UserLoginModal style={ { alignItem: 'right' } } />
+                            </div>
+                        </>
+                    ) : (
+                            <></>
+                        )}
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
-
 
 // SEARCH BAR //
 // <div className={classes.search}>
