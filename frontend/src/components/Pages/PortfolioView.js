@@ -80,11 +80,12 @@ class PortfolioView extends Component {
 
         return (
             <>
-                {this.state.isLoggedIn ? (
-                    <BaseTemplate portfolioPage={portfolioPage}>
-                        <h1>Portfolio View</h1>
-                        <hr />
-                        <TabPanelScroll labels={this.state.portfolioLabels} data={this.state.data} />
+                { this.state.isLoggedIn ? (
+                    <BaseTemplate portfolioPage={ portfolioPage }>
+                        <h1 style={ { background: '#0D5A71', margin: 0, height: 60, color: 'white', textAlign: 'center' } }>Portfolio View</h1>
+
+                        <TabPanelScroll labels={ this.state.portfolioLabels } data={ this.state.data } />
+                        <div style={ { background: '#1e2632', height: 400 } }></div>
                     </BaseTemplate>
                 ) : (
                         <BaseTemplate>
@@ -92,7 +93,7 @@ class PortfolioView extends Component {
                             <hr />
                             <p>You are currently not logged in. Please login or create a user and login.</p>
                         </BaseTemplate>
-                    )}
+                    ) }
             </>
         )
     }

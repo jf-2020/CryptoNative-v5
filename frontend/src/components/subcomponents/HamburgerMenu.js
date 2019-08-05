@@ -9,6 +9,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddPortfolioModal from '../Forms/AddPortfolioModal';
 import DeletePortfolioModal from '../Forms/DeletePortfolioModal';
 import AddCoinModal from '../Forms/AddCoinModal';
+import { createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue,
+    },
+});
 
 const StyledMenu = withStyles({
     paper: {
@@ -16,26 +24,26 @@ const StyledMenu = withStyles({
     },
 })(props => (
     <Menu
-        elevation={0}
-        getContentAnchorEl={null}
-        anchorOrigin={{
+        elevation={ 0 }
+        getContentAnchorEl={ null }
+        anchorOrigin={ {
             vertical: 'bottom',
             horizontal: 'center',
-        }}
-        transformOrigin={{
+        } }
+        transformOrigin={ {
             vertical: 'top',
             horizontal: 'center',
-        }}
-        {...props}
+        } }
+        { ...props }
     />
 ));
 
 const StyledMenuItem = withStyles(theme => ({
     root: {
         '&:focus': {
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: 'green',
             '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-                color: theme.palette.common.white,
+                color: 'green',
             },
         },
     },
@@ -57,18 +65,18 @@ export default function CustomizedMenus() {
             <Button
                 aria-controls="customized-menu"
                 aria-haspopup="true"
+                style={ { background: '#00C689' } }
                 variant="contained"
-                color="primary"
-                onClick={handleClick}
+                onClick={ handleClick }
             >
                 <MenuIcon />
             </Button>
             <StyledMenu
                 id="customized-menu"
-                anchorEl={anchorEl}
+                anchorEl={ anchorEl }
                 keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
+                open={ Boolean(anchorEl) }
+                onClose={ handleClose }
             >
                 <StyledMenuItem>
                     <ListItemIcon>
