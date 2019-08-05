@@ -12,7 +12,7 @@ import HamburgerMenu from '../subcomponents/HamburgerMenu';
 
 const useStyles = makeStyles({
     root: {
-        background: '#1E2632',
+        background: '#00C689',
 
         flexGrow: 1,
     },
@@ -30,30 +30,30 @@ export default function SearchAppBar(props) {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={ classes.root }>
             <AppBar position="fixed">
-                <Toolbar style={{ background: '#1E2632' }}>
-                    <img src={logo} alt="logo" />
+                <Toolbar style={ { background: '#1E2632' } }>
+                    <img src={ logo } alt="logo" />
 
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Bitchin App
+                    <Typography className={ classes.title } variant="h6" noWrap>
+                        CryptKeeper
                     </Typography>
 
-                    {props.userPage ? (
+                    { props.userPage ? (
                         <>
-                            <div className={classes.search}>
-                                <UserLoginModal style={{ alignItem: 'right' }} />
+                            <div className={ classes.search }>
+                                <UserLoginModal style={ { alignItem: 'right' } } />
                             </div>
                         </>
                     ) : props.portfolioPage ? (
                         <>
-                            <div className={classes.search}>
+                            <div className={ classes.search }>
                                 <HamburgerMenu />
                             </div>
                         </>
                     ) : (
                                 <></>
-                            )}
+                            ) }
                 </Toolbar>
             </AppBar>
         </div>

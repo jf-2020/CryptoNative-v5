@@ -19,12 +19,12 @@ function TabPanel(props) {
         <Typography
             component="div"
             role="tabpanel"
-            hidden={value !== index}
-            id={`scrollable-auto-tabpanel-${index}`}
-            aria-labelledby={`scrollable-auto-tab-${index}`}
-            {...other}
+            hidden={ value !== index }
+            id={ `scrollable-auto-tabpanel-${index}` }
+            aria-labelledby={ `scrollable-auto-tab-${index}` }
+            { ...other }
         >
-            <Box p={3}>{children}</Box>
+            <Box p={ 3 }>{ children }</Box>
         </Typography>
     );
 }
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         width: '100%',
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: '#1e2632'
     },
 }));
 
@@ -70,8 +70,8 @@ const ScrollableTabsButtonAuto = (props) => {
 
     return (
         <>
-            {isLoggedIn ? (
-                <div className={classes.root} >
+            { isLoggedIn ? (
+                <div className={ classes.root } >
                     <AppBar position="static" color="default">
                         <Tabs
                             value={value}
@@ -92,12 +92,12 @@ const ScrollableTabsButtonAuto = (props) => {
                             })}
                         </Tabs>
                     </AppBar>
-                    {data.map((portfolio, index) => {
+                    { data.map((portfolio, index) => {
                         const key = Object.keys(portfolio)[0];
 
                         return (
-                            <TabPanel value={value} index={index} key={index}>
-                                {portfolio[key].map((obj, index) => {
+                            <TabPanel value={ value } index={ index } key={ index }>
+                                { portfolio[key].map((obj, index) => {
                                     const name = obj.name;
                                     const symbol = obj.symbol;
                                     const price = obj.price;
@@ -107,13 +107,15 @@ const ScrollableTabsButtonAuto = (props) => {
                                         percent_change: amount
                                     };
                                     return (
-                                        <div className="row-div" key={index}>
-                                            <RowBadge
-                                                name={name}
-                                                ticker={symbol}
-                                            />
-                                            <RowItem data={data} />
-                                        </div>
+                                        <>
+                                            <div className="row-div" key={ index }>
+                                                <RowBadge
+                                                    name={ name }
+                                                    ticker={ symbol }
+                                                />
+                                                <RowItem data={ data } />
+                                            </div>
+                                        </>
                                     )
                                 })
                                 }
@@ -124,7 +126,7 @@ const ScrollableTabsButtonAuto = (props) => {
                 </div >
             ) : (
                     <Redirect to="/three" />
-                )}
+                ) }
         </>
     )
 }

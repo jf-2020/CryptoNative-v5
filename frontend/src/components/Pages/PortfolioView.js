@@ -138,7 +138,7 @@ class PortfolioView extends Component {
                 {this.state.isLoggedIn ? (
                     this.state.rerender ? (
                         <BaseTemplate portfolioPage={portfolioPage}>
-                            <h1>Portfolio View</h1>
+                            <h1 style={ { background: '#0D5A71', margin: 0, height: 60, color: 'white', textAlign: 'center' } }>Portfolio View</h1>
                             <hr />
                             <NewDonut
                                 data={this.state.coinValues}
@@ -149,16 +149,18 @@ class PortfolioView extends Component {
                                 data={this.state.data}
                                 labelHandler={this.labelHandler}
                             />
+                            <div style={ { background: '#1e2632', height: 400 } }></div>
                         </BaseTemplate>
                     ) : (
                             <BaseTemplate portfolioPage={portfolioPage}>
-                                <h1>Portfolio View</h1>
+                                <h1 style={ { background: '#0D5A71', margin: 0, height: 60, color: 'white', textAlign: 'center' } }>Portfolio View</h1>
                                 <hr />
                                 <TabPanelScroll
                                     labels={this.state.portfolioLabels}
                                     data={this.state.data}
                                     labelHandler={this.labelHandler}
                                 />
+                                <div style={ { background: '#1e2632', height: 400 } }></div>
                             </BaseTemplate>)
                 ) : (
                         <BaseTemplate>
@@ -166,7 +168,7 @@ class PortfolioView extends Component {
                             <hr />
                             <p>You are currently not logged in. Please login or create a user and login.</p>
                         </BaseTemplate>
-                    )}
+                    ) }
             </>
         )
     }
