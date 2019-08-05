@@ -7,16 +7,7 @@ import BaseTemplate from '../BaseTemplate';
 import TabPanelScroll from '../subcomponents/TabPanelScroll';
 
 // import LineChart from '../Charts/LineChart';
-// import NewDonut from '../Charts/NewDonut';
-
-// test data to be used until API tied in
-// const test_linechart = {
-//     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//     prices: [65, 59, 80, 81, 56, 55, 40]
-// },
-//     test_donutchart = [150, 200, 250];
-
-
+import NewDonut from '../Charts/NewDonut';
 
 class PortfolioView extends Component {
     constructor(props) {
@@ -37,8 +28,51 @@ class PortfolioView extends Component {
             isLoggedIn: user_id ? true : false,
             portfolios: portfolios,
             portfolioLabels: [],
-            data: []
+            data: [],
+            rerender: false,
+            coinValues: [],
+            coinLabels: []
         };
+
+        this.labelHandler = this.labelHandler.bind(this);
+        this.fetchCurrentPrices = this.fetchCurrentPrices.bind(this);
+    }
+
+    async labelHandler() {
+        const store = sessionStorage;
+        const current_tab = store.tab;
+        const current_index = this.state.portfolioLabels.indexOf(current_tab);
+        const current_coins = this.state.data[current_index][current_tab];
+
+        const coins = current_coins.map(coin => {
+            return coin.name.toLowerCase();
+        })
+        const coinsAndAmountsAndSymbols = current_coins.map(coin => {
+            return [coin.name.toLowerCase(), coin.amount, coin.symbol];
+        })
+
+        const data = await this.fetchCurrentPrices(coins);
+
+        const coin_values = [];
+        const coin_symbols = [];
+        for (let i = 0; i < data.length; i++) {
+            if (data[i][0] === coins[i]) {
+                const price = data[i][1];
+                const amount = coinsAndAmountsAndSymbols[i][1];
+                const symbol = coinsAndAmountsAndSymbols[i][2];
+
+                const totalValue = price * amount;
+
+                coin_values.push(totalValue);
+                coin_symbols.push(symbol);
+            }
+        }
+
+        this.setState({
+            rerender: true,
+            coinValues: coin_values,
+            coinLabels: coin_symbols
+        });
     }
 
     async componentDidMount() {
@@ -75,17 +109,57 @@ class PortfolioView extends Component {
         });
     }
 
+    async fetchCurrentPrices(coins) {
+        const data = [];
+        for (let i = 0; i < coins.length; i++) {
+            // construct the request
+            const proxy = "https://cors-anywhere.herokuapp.com/",
+                base_url = "https://api.coincap.io/v2/",
+                resource = 'assets/',
+                id = coins[i];
+            const request_url = proxy + base_url + resource + id;
+            // now perform the fetch
+            const response = fetch(request_url)
+                .then(resp => resp.json())
+                // extract the data object
+                .then(data => {
+                    return [id, data.data.priceUsd];
+                });
+            data.push(await response);
+        }
+        return data;
+    }
+
     render() {
         const portfolioPage = true;
 
         return (
             <>
                 {this.state.isLoggedIn ? (
-                    <BaseTemplate portfolioPage={portfolioPage}>
-                        <h1>Portfolio View</h1>
-                        <hr />
-                        <TabPanelScroll labels={this.state.portfolioLabels} data={this.state.data} />
-                    </BaseTemplate>
+                    this.state.rerender ? (
+                        <BaseTemplate portfolioPage={portfolioPage}>
+                            <h1>Portfolio View</h1>
+                            <hr />
+                            <NewDonut
+                                data={this.state.coinValues}
+                                labels={this.state.coinLabels}
+                            />
+                            <TabPanelScroll
+                                labels={this.state.portfolioLabels}
+                                data={this.state.data}
+                                labelHandler={this.labelHandler}
+                            />
+                        </BaseTemplate>
+                    ) : (
+                            <BaseTemplate portfolioPage={portfolioPage}>
+                                <h1>Portfolio View</h1>
+                                <hr />
+                                <TabPanelScroll
+                                    labels={this.state.portfolioLabels}
+                                    data={this.state.data}
+                                    labelHandler={this.labelHandler}
+                                />
+                            </BaseTemplate>)
                 ) : (
                         <BaseTemplate>
                             <h1>Portfolio List View</h1>
@@ -97,20 +171,5 @@ class PortfolioView extends Component {
         )
     }
 };
-
-// const PortfolioView = () => {
-//     return (
-//         <BaseTemplate>
-//             <h1>Portfolio View</h1>
-//             <hr />
-//             <AddPortfolioModal />
-//             <hr />
-//             <DeletePortfolioModal />
-//             <hr />
-//             <NewDonut data={test_donutchart} />
-//             <LineChart data={test_linechart} />
-//         </BaseTemplate>
-//     )
-// };
 
 export default PortfolioView;

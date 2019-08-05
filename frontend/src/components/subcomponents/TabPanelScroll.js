@@ -53,16 +53,20 @@ const useStyles = makeStyles(theme => ({
 const ScrollableTabsButtonAuto = (props) => {
     const labels = props.labels;
     const data = props.data;
+    const labelHandler = props.labelHandler;
 
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
-    function handleChange(event, newValue) {
-        setValue(newValue);
-    }
-
     const store = sessionStorage;
     const isLoggedIn = store.getItem('user');
+
+    function handleChange(event, newValue) {
+        setValue(newValue);
+
+        const current_tab = labels[newValue];
+        store.setItem('tab', current_tab);
+    }
 
     return (
         <>
@@ -72,6 +76,7 @@ const ScrollableTabsButtonAuto = (props) => {
                         <Tabs
                             value={value}
                             onChange={handleChange}
+                            onClick={labelHandler}
                             indicatorColor="primary"
                             textColor="primary"
                             variant="scrollable"
@@ -79,7 +84,11 @@ const ScrollableTabsButtonAuto = (props) => {
                             aria-label="scrollable auto tabs example"
                         >
                             {labels.map((name, index) => {
-                                return <Tab label={name} {...a11yProps(index)} key={index} />
+                                return <Tab
+                                    label={name}
+                                    {...a11yProps(index)}
+                                    key={index}
+                                />
                             })}
                         </Tabs>
                     </AppBar>
