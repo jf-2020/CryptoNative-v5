@@ -28,7 +28,7 @@ export default function SearchAppBar(props) {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={ classes.root }>
             <AppBar position="fixed">
                 <Toolbar style={{ background: '#1E2632' }}>
                     <img src={logo} alt="logo" />
@@ -45,7 +45,7 @@ export default function SearchAppBar(props) {
                         </>
                     ) : (
                             <></>
-                        )}
+                        ) }
                 </Toolbar>
             </AppBar>
         </div>

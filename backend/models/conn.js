@@ -4,21 +4,21 @@ const pgp = require('pg-promise')({
     }
 });
 
-// // igor
-// const options = {
-//     host: 'localhost',
-//     database: 'cryptonative_app',
-//     user: 'igorpopenov',
-//     password: 'admin'
-// };
-
-// jack
+// igor
 const options = {
     host: 'localhost',
     database: 'cryptonative_app',
-    user: 'postgres',
+    user: 'igorpopenov',
     password: 'admin'
 };
+
+// jack
+// const options = {
+//     host: 'localhost',
+//     database: 'cryptonative_app',
+//     user: 'postgres',
+//     password: 'admin'
+// };
 
 const db = pgp(options);
 

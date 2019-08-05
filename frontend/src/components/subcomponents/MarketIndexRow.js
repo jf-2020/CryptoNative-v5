@@ -13,6 +13,7 @@ import fetch from 'node-fetch';
 import RowBadge from './RowBadge';
 import RowItem from './RowItem';
 
+
 import '../../styles/Row.css';
 
 class MarketIndexRow extends Component {
@@ -63,19 +64,20 @@ class MarketIndexRow extends Component {
             console.log("data:", data);
 
             return (
-                <div className="row-div">
+                <div className="row-div"  >
                     <RowBadge
-                        name={this.state.name}
-                        ticker={this.state.ticker}
+                        name={ this.state.name }
+                        ticker={ this.state.ticker }
                     />
-                    <RowItem data={data} />
+                    <RowItem data={ data } />
                 </div>
+
             )
         } else {
             return (
                 <div>
-                    <h1>Name: {this.state.name}</h1>
-                    <h1>Ticker: {this.state.ticker}</h1>
+                    <h1>Name: { this.state.name }</h1>
+                    <h1>Ticker: { this.state.ticker }</h1>
                 </div>
             )
         }

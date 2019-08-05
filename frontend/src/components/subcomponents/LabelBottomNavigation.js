@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
+import List from '@material-ui/icons/List';
+
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import FolderIcon from '@material-ui/icons/Folder';
+
+
+import AccountBox from '@material-ui/icons/AccountBox';
+import DonutLarge from '@material-ui/icons/DonutLarge';
 
 
 // import BaseTemplate from '../BaseTemplate';
@@ -19,7 +22,7 @@ const useStyles = makeStyles({
         position: 'fixed',
         bottom: 0,
         background: '#1E2632',
-        color: '#00C689'
+
     },
 });
 
@@ -32,11 +35,12 @@ export default function LabelBottomNavigation() {
     }
 
     return (
+
         <BottomNavigation value={ value } onChange={ handleChange } className={ classes.root }>
             <BottomNavigationAction
-                label="Recents"
-                value="recents"
-                icon={ <RestoreIcon /> }
+                label="Dashboard"
+                value="dashboard"
+                icon={ <List /> }
                 component={ Link }
                 to="/one"
             />
@@ -48,16 +52,16 @@ export default function LabelBottomNavigation() {
                 to="/two"
             />
             <BottomNavigationAction
-                label="Nearby"
-                value="nearby"
-                icon={ <LocationOnIcon /> }
+                label="Portfolio"
+                value="portfolio"
+                icon={ <DonutLarge>folder</DonutLarge> }
                 component={ Link }
                 to="/three"
             />
             <BottomNavigationAction
-                label="Folder"
-                value="folder"
-                icon={ <FolderIcon>folder</FolderIcon> }
+                label="Account"
+                value="account"
+                icon={ <AccountBox /> }
                 component={ Link }
                 to="/four"
             />
