@@ -17,8 +17,8 @@ exports.deletePortfolio = async (req, res) => {
     const { name, user } = req.body;
 
     try {
-        await Portfolio.deletePortfolio(name, user);
-        res.sendStatus(200);
+        const portfolio_id = await Portfolio.deletePortfolio(name, user);
+        res.json({ portfolioId: portfolio_id });
     } catch (error) {
         console.log("deletePortfolio() controller error:", error.message);
         res.sendStatus(400);

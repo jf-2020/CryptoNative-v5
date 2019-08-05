@@ -6,10 +6,6 @@ import BaseTemplate from '../BaseTemplate';
 
 import TabPanelScroll from '../subcomponents/TabPanelScroll';
 
-import AddPortfolioModal from '../Forms/AddPortfolioModal';
-import DeletePortfolioModal from '../Forms/DeletePortfolioModal';
-import AddCoinModal from '../Forms/AddCoinModal';
-
 // import LineChart from '../Charts/LineChart';
 // import NewDonut from '../Charts/NewDonut';
 
@@ -80,21 +76,13 @@ class PortfolioView extends Component {
     }
 
     render() {
-        // console.log("userId:", this.state.userId);
-        // console.log("isLoggedIn:", this.state.isLoggedIn);
-        // console.log("portfolios:", this.state.portfolios);
+        const portfolioPage = true;
 
         return (
             <>
                 {this.state.isLoggedIn ? (
-                    <BaseTemplate >
+                    <BaseTemplate portfolioPage={portfolioPage}>
                         <h1>Portfolio View</h1>
-                        <hr />
-                        <AddPortfolioModal />
-                        <hr />
-                        <DeletePortfolioModal />
-                        <hr />
-                        <AddCoinModal />
                         <hr />
                         <TabPanelScroll labels={this.state.portfolioLabels} data={this.state.data} />
                     </BaseTemplate>

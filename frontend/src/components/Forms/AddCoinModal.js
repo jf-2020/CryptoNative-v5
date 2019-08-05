@@ -75,13 +75,10 @@ class AddCoinModal extends Component {
     async handleSubmit(e) {
         e.preventDefault();
 
-        // const store = sessionStorage;
-        // const userId = store.getItem('user');
+        const store = sessionStorage;
+        const userId = store.getItem('user');
 
-        // TESTING
-        const user_id = 1;
-
-        const url = `http://localhost:9000/portfolios/${user_id}/coinAdd`;
+        const url = `http://localhost:9000/portfolios/${userId}/coinAdd`;
 
         await fetch(url, {
             method: "POST",

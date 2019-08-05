@@ -14,7 +14,8 @@ class BaseTemplate extends Component {
         this.div = React.createRef();
         this.state = {
             dimensions: [],
-            userPage: props.userPage
+            userPage: props.userPage,
+            portfolioPage: props.portfolioPage
         };
     }
 
@@ -45,9 +46,12 @@ class BaseTemplate extends Component {
          * any number of components. as such, it's accessed below via `props.children`.
          */
         return (
-            <div style={ { height: '100%' } } ref={ this.div }>
+            <div style={{ height: '100%' }} ref={this.div}>
                 <Box display="flex" flexDirection="column">
-                    <SearchAppBar userPage={ this.state.userPage } />
+                    <SearchAppBar
+                        userPage={this.state.userPage}
+                        portfolioPage={this.state.portfolioPage}
+                    />
                     <Box flex="1"
                         overflow="auto"
                         display="flex"
@@ -57,17 +61,17 @@ class BaseTemplate extends Component {
                         {this.state.dimensions ? (
                             <>
                                 <Box
-                                    style={ {
+                                    style={{
                                         marginTop: `${this.state.dimensions[1]}px`,
                                         marginBottom: `${this.state.dimensions[3]}px`
-                                    } }
+                                    }}
                                 >
-                                    { this.props.children }
+                                    {this.props.children}
                                 </Box>
                             </>
                         ) : (
                                 <></>
-                            ) }
+                            )}
                     </Box>
 
                     <LabelBottomNavigation />
